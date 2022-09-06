@@ -13,6 +13,8 @@
 		E790ED5E28C73BA40008C31B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E790ED5C28C73BA40008C31B /* Main.storyboard */; };
 		E790ED6028C73BA50008C31B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E790ED5F28C73BA50008C31B /* Assets.xcassets */; };
 		E790ED6328C73BA50008C31B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E790ED6128C73BA50008C31B /* LaunchScreen.storyboard */; };
+		E790ED7228C74ABB0008C31B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E790ED7128C74ABB0008C31B /* HealthKit.framework */; };
+		E790ED7428C74BA20008C31B /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED7328C74BA20008C31B /* HealthKitSetupAssistant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,9 @@
 		E790ED5F28C73BA50008C31B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E790ED6228C73BA50008C31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E790ED6428C73BA50008C31B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E790ED6F28C74ABB0008C31B /* Autotune2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Autotune2.entitlements; sourceTree = "<group>"; };
+		E790ED7128C74ABB0008C31B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		E790ED7328C74BA20008C31B /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E790ED7228C74ABB0008C31B /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +48,7 @@
 			children = (
 				E790ED5528C73BA40008C31B /* Autotune2 */,
 				E790ED5428C73BA40008C31B /* Products */,
+				E790ED7028C74ABB0008C31B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +63,7 @@
 		E790ED5528C73BA40008C31B /* Autotune2 */ = {
 			isa = PBXGroup;
 			children = (
+				E790ED6F28C74ABB0008C31B /* Autotune2.entitlements */,
 				E790ED5628C73BA40008C31B /* AppDelegate.swift */,
 				E790ED5828C73BA40008C31B /* SceneDelegate.swift */,
 				E790ED6E28C73E020008C31B /* Views */,
@@ -95,6 +103,7 @@
 			children = (
 				E790ED6128C73BA50008C31B /* LaunchScreen.storyboard */,
 				E790ED5F28C73BA50008C31B /* Assets.xcassets */,
+				E790ED7328C74BA20008C31B /* HealthKitSetupAssistant.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -105,6 +114,14 @@
 				E790ED5C28C73BA40008C31B /* Main.storyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E790ED7028C74ABB0008C31B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E790ED7128C74ABB0008C31B /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E790ED5B28C73BA40008C31B /* ViewController.swift in Sources */,
+				E790ED7428C74BA20008C31B /* HealthKitSetupAssistant.swift in Sources */,
 				E790ED5728C73BA40008C31B /* AppDelegate.swift in Sources */,
 				E790ED5928C73BA40008C31B /* SceneDelegate.swift in Sources */,
 			);
@@ -325,11 +343,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Autotune2/Autotune2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F97789F2PG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Autotune2/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Use insulin, glucose and activity data to predict future insulin demands";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write labelled activites to healthkit";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -353,11 +374,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Autotune2/Autotune2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F97789F2PG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Autotune2/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Use insulin, glucose and activity data to predict future insulin demands";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write labelled activites to healthkit";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
