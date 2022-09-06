@@ -36,6 +36,7 @@ class UserHealthProfile {
   var biologicalSex: HKBiologicalSex?
   var bloodType: HKBloodType?
     var bloodGlucose: Double?
+    var averageBloodGlucose: Double?
   var heightInMeters: Double?
   var weightInKilograms: Double?
   
