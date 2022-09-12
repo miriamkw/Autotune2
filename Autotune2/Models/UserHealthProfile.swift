@@ -40,6 +40,7 @@ class UserHealthProfile {
   var heightInMeters: Double?
   var weightInKilograms: Double?
   
+    // Computed property that will return nil if not weight or height is stored in this class
   var bodyMassIndex: Double? {
     
     guard let weightInKilograms = weightInKilograms,

@@ -32,16 +32,22 @@
  */
 
 import HealthKit
+import LoopKit
+import UIKit
 
 class ProfileDataStore {
+    
+    // TODO: Add constants for insulin absorbtion here, remember good name convention
+    
+    
+    
     
     // Asks for age (calculated from date), sex and blood type
     class func getAgeAndSex() throws -> (
         age: Int,
         biologicalSex: HKBiologicalSex) {
         
-      let healthKitStore = HKHealthStore()
-        
+            let healthKitStore = HKHealthStore()
       do {
         //1. This method throws an error if these data are not available.
         let birthdayComponents =  try healthKitStore.dateOfBirthComponents()
@@ -115,4 +121,78 @@ class ProfileDataStore {
          
         HKHealthStore().execute(query)
     }
+    
+    
+    class func getAverageBloodGlucose2(completion: @escaping (HKQuantity?, Error?) -> Swift.Void) {
+        // TODO: This method should take a list of start and enddates and return average glucose levels from this query
+        
+        
+        //1. Use HKQuery to get samples from the last hour
+        let predicate = HKQuery.predicateForSamples(withStart: Date(timeIntervalSinceNow: -60*60),
+                                                          end: Date(),
+                                                          options: .strictEndDate)
+        
+        let predicate2 = HKQuery.predicateForSamples(withStart: Date(timeIntervalSinceNow: -60*60*60),
+                                                          end: Date(timeIntervalSinceNow: -60*60),
+                                                          options: .strictEndDate)
+
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicate2])
+        
+        // Create the query descriptor.
+        let bloodGlucoseType = HKQuantityType(.bloodGlucose)
+        let query = HKStatisticsQuery(quantityType: bloodGlucoseType, quantitySamplePredicate: predicate, options: .discreteAverage) { query, results, error in
+            //2. Always dispatch to the main thread when complete.
+            DispatchQueue.main.async {
+                guard let results = results,
+                      let averageValue = results.averageQuantity() else {
+                        
+                    completion(nil, error)
+                    return
+              }
+              completion(averageValue, nil)
+            }
+          }
+         
+        HKHealthStore().execute(query)
+    }
+    
+    
+    class func getAverageIOB(completion: @escaping (HKQuantity?, Error?) -> Swift.Void) {
+        let healthKitStore = HKHealthStore()
+        // Same as in Loop so that results can be compared easily
+        let insulinModel = ExponentialInsulinModel(actionDuration: 360*60, peakActivityTime: 75*60)
+        let basalProfile = BasalRateSchedule(dailyItems: [RepeatingScheduleValue(startTime: TimeInterval(), value: 0.8)])
+        let ISFProfile = InsulinSensitivitySchedule(unit: .millimolesPerLiter, dailyItems: [RepeatingScheduleValue(startTime: TimeInterval(), value: 3.9)])
+        let persistenceController = PersistenceController.controllerInLocalDirectory()
+        
+        // Get average IOB from the last hour
+        let doseStore = DoseStore(healthStore: healthKitStore, cacheStore: persistenceController, insulinModel: insulinModel, basalProfile: basalProfile, insulinSensitivitySchedule: ISFProfile)
+        
+        doseStore.insulinOnBoard(at: Date(), completion: { result in
+            print("RESULT")
+            print(result)
+        })
+        
+        //1. Use HKQuery to get samples from the last hour
+        let predicate = HKQuery.predicateForSamples(withStart: Date(timeIntervalSinceNow: -60*60),
+                                                          end: Date(),
+                                                          options: .strictEndDate)
+
+        // Create the query descriptor.
+        let bloodGlucoseType = HKQuantityType(.bloodGlucose)
+        let query = HKStatisticsQuery(quantityType: bloodGlucoseType, quantitySamplePredicate: predicate, options: .discreteAverage) { query, results, error in
+            //2. Always dispatch to the main thread when complete.
+            DispatchQueue.main.async {
+                guard let results = results,
+                      let averageValue = results.averageQuantity() else {
+                        
+                    completion(nil, error)
+                    return
+              }
+              completion(averageValue, nil)
+            }
+          }
+        HKHealthStore().execute(query)
+    }
+    
 }

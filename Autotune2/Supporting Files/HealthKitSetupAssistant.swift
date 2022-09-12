@@ -57,7 +57,8 @@ class HealthKitSetupAssistant {
             let height = HKObjectType.quantityType(forIdentifier: .height),
             let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
             let activeEnergy = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
-            let bloodGlucose = HKObjectType.quantityType(forIdentifier: .bloodGlucose)
+            let bloodGlucose = HKObjectType.quantityType(forIdentifier: .bloodGlucose),
+            let insulin = HKObjectType.quantityType(forIdentifier: .insulinDelivery)
       else {
               completion(false, HealthkitSetupError.dataTypeNotAvailable)
               return
@@ -75,7 +76,8 @@ class HealthKitSetupAssistant {
                                                      height,
                                                      bodyMass,
                                                      bloodGlucose,
-                                                     HKObjectType.workoutType()]
+                                                     HKObjectType.workoutType(),
+                                                     insulin]
       
       //4. Request Authorization
       HKHealthStore().requestAuthorization(toShare: healthKitTypesToWrite,

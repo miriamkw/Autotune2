@@ -1,0 +1,97 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "159a4fe7b077181ad412a9c7fa032e2142239945178ec62c7a07c0a666086e75",
+      "name" : "LoopKit",
+      "container" : "LoopKit.xcframework",
+      "identifier" : "watchos-arm64_i386_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "044ba44368e90a00eace63c3fc66f2b34a7ff9511c064bd3cfa640319b5c0b31",
+      "name" : "LoopKit",
+      "container" : "LoopKit.xcframework",
+      "identifier" : "watchos-arm64_32_armv7k"
+    }
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "v3.0",
+  "iOS" : [
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "38eeb4676408545fc5e5b297dcb985e9454ac8d7a08fde3bbf9bed85bacca098",
+      "name" : "LoopKit",
+      "container" : "LoopKit.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "844a28604a60cdfe00cbcf090b8dfeda0afa2fed5ad0942c14ff5a56627b8e68",
+      "name" : "LoopKit",
+      "container" : "LoopKit.xcframework",
+      "identifier" : "ios-arm64"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "72456f60e168283ba6cd09570cd99dd632ea3aef25de5640de20a8f37dfe2a4f",
+      "name" : "LoopKitUI",
+      "container" : "LoopKitUI.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "bb09935a2e4a76c586c0a2d3eab595baf8c773793dd6c011142f888f1c178d2e",
+      "name" : "LoopKitUI",
+      "container" : "LoopKitUI.xcframework",
+      "identifier" : "ios-arm64"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "017f4e61189aec20a094d57174dae05c5b6b48453278afd447fa0868637f2c8a",
+      "name" : "LoopTestingKit",
+      "container" : "LoopTestingKit.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "714375b45aa8403ab228367d4508cb400cbce9530b6b0cfc91291099ffe6905d",
+      "name" : "LoopTestingKit",
+      "container" : "LoopTestingKit.xcframework",
+      "identifier" : "ios-arm64"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "92c6ea94dd52cbdc2eab0e4535d4b5fbfb114cb3a4864afe5dc3a77a8a6050f1",
+      "name" : "MockKit",
+      "container" : "MockKit.xcframework",
+      "identifier" : "ios-arm64"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "869e2dede4f7778fc1f5345b41499d797ddf25d36370bc927060fac7538d83ad",
+      "name" : "MockKit",
+      "container" : "MockKit.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "efc4dc74763e8c2597c79b42e12272e484a9935c38dc3351f4768ae7bd42a947",
+      "name" : "MockKitUI",
+      "container" : "MockKitUI.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)",
+      "hash" : "41438ca9176cc6aa5b78af6fda6c38d416ba6d666cc1beb7774759f8e71d9503",
+      "name" : "MockKitUI",
+      "container" : "MockKitUI.xcframework",
+      "identifier" : "ios-arm64"
+    }
+  ]
+}

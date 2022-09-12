@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E71B66FB28CF252F00AD09CE /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71B66FA28CF252F00AD09CE /* LoopKit.framework */; };
+		E71B66FC28CF252F00AD09CE /* LoopKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E71B66FA28CF252F00AD09CE /* LoopKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E71B670128CF2E5700AD09CE /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670028CF2E5700AD09CE /* PersistenceController.swift */; };
+		E71B670428CF2E9900AD09CE /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670328CF2E9900AD09CE /* Bundle.swift */; };
+		E71B670628CF30C400AD09CE /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670528CF30C400AD09CE /* HKUnit.swift */; };
 		E790ED5728C73BA40008C31B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5628C73BA40008C31B /* AppDelegate.swift */; };
 		E790ED5928C73BA40008C31B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5828C73BA40008C31B /* SceneDelegate.swift */; };
 		E790ED5B28C73BA40008C31B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5A28C73BA40008C31B /* ViewController.swift */; };
@@ -18,9 +23,29 @@
 		E790ED7628C750200008C31B /* ProfileDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED7528C750200008C31B /* ProfileDataStore.swift */; };
 		E790ED7828C7541F0008C31B /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED7728C7541F0008C31B /* UserHealthProfile.swift */; };
 		E7F377B728C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F377B628C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift */; };
+		E7F377B928C788C9009FE8BE /* WorkoutDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F377B828C788C9009FE8BE /* WorkoutDataStore.swift */; };
+		E7F377BD28C7933D009FE8BE /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F377BC28C7933D009FE8BE /* Workout.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E71B66FD28CF252F00AD09CE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E71B66FC28CF252F00AD09CE /* LoopKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		E71B66FA28CF252F00AD09CE /* LoopKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LoopKit.framework; path = Carthage/Build/iOS/LoopKit.framework; sourceTree = "<group>"; };
+		E71B670028CF2E5700AD09CE /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		E71B670328CF2E9900AD09CE /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		E71B670528CF30C400AD09CE /* HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
 		E790ED5328C73BA40008C31B /* Autotune2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Autotune2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E790ED5628C73BA40008C31B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E790ED5828C73BA40008C31B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +60,8 @@
 		E790ED7528C750200008C31B /* ProfileDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataStore.swift; sourceTree = "<group>"; };
 		E790ED7728C7541F0008C31B /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
 		E7F377B628C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
+		E7F377B828C788C9009FE8BE /* WorkoutDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataStore.swift; sourceTree = "<group>"; };
+		E7F377BC28C7933D009FE8BE /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,12 +70,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				E790ED7228C74ABB0008C31B /* HealthKit.framework in Frameworks */,
+				E71B66FB28CF252F00AD09CE /* LoopKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E71B66FF28CF2E4500AD09CE /* Loop Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E71B670028CF2E5700AD09CE /* PersistenceController.swift */,
+			);
+			path = "Loop Extensions";
+			sourceTree = "<group>";
+		};
+		E71B670228CF2E8D00AD09CE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E71B670328CF2E9900AD09CE /* Bundle.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E790ED4A28C73BA40008C31B = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +113,8 @@
 		E790ED5528C73BA40008C31B /* Autotune2 */ = {
 			isa = PBXGroup;
 			children = (
+				E71B670228CF2E8D00AD09CE /* Extensions */,
+				E71B66FF28CF2E4500AD09CE /* Loop Extensions */,
 				E790ED6F28C74ABB0008C31B /* Autotune2.entitlements */,
 				E790ED5628C73BA40008C31B /* AppDelegate.swift */,
 				E790ED5828C73BA40008C31B /* SceneDelegate.swift */,
@@ -94,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				E7F377B628C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift */,
+				E71B670528CF30C400AD09CE /* HKUnit.swift */,
 			);
 			path = "HealthKit Extensions";
 			sourceTree = "<group>";
@@ -102,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				E790ED7728C7541F0008C31B /* UserHealthProfile.swift */,
+				E7F377BC28C7933D009FE8BE /* Workout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -113,6 +161,7 @@
 				E790ED5F28C73BA50008C31B /* Assets.xcassets */,
 				E790ED7328C74BA20008C31B /* HealthKitSetupAssistant.swift */,
 				E790ED7528C750200008C31B /* ProfileDataStore.swift */,
+				E7F377B828C788C9009FE8BE /* WorkoutDataStore.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -128,6 +177,7 @@
 		E790ED7028C74ABB0008C31B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E71B66FA28CF252F00AD09CE /* LoopKit.framework */,
 				E790ED7128C74ABB0008C31B /* HealthKit.framework */,
 			);
 			name = Frameworks;
@@ -143,6 +193,8 @@
 				E790ED4F28C73BA40008C31B /* Sources */,
 				E790ED5028C73BA40008C31B /* Frameworks */,
 				E790ED5128C73BA40008C31B /* Resources */,
+				E71B66FD28CF252F00AD09CE /* Embed Frameworks */,
+				E71B66FE28CF255400AD09CE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -199,6 +251,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E71B66FE28CF255400AD09CE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/LoopKit",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E790ED4F28C73BA40008C31B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -206,11 +279,16 @@
 			files = (
 				E790ED5B28C73BA40008C31B /* ViewController.swift in Sources */,
 				E790ED7628C750200008C31B /* ProfileDataStore.swift in Sources */,
+				E71B670628CF30C400AD09CE /* HKUnit.swift in Sources */,
 				E790ED7828C7541F0008C31B /* UserHealthProfile.swift in Sources */,
+				E7F377B928C788C9009FE8BE /* WorkoutDataStore.swift in Sources */,
 				E7F377B728C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift in Sources */,
+				E7F377BD28C7933D009FE8BE /* Workout.swift in Sources */,
 				E790ED7428C74BA20008C31B /* HealthKitSetupAssistant.swift in Sources */,
 				E790ED5728C73BA40008C31B /* AppDelegate.swift in Sources */,
+				E71B670428CF2E9900AD09CE /* Bundle.swift in Sources */,
 				E790ED5928C73BA40008C31B /* SceneDelegate.swift in Sources */,
+				E71B670128CF2E5700AD09CE /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +437,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F97789F2PG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Autotune2/Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Use insulin, glucose and activity data to predict future insulin demands";
@@ -390,6 +472,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F97789F2PG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Autotune2/Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Use insulin, glucose and activity data to predict future insulin demands";
