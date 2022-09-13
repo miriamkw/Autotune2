@@ -37,7 +37,7 @@ import UIKit
 
 class ProfileDataStore {
     
-    // TODO: Add constants for insulin absorbtion here, remember good name convention
+
     
     
     
@@ -47,12 +47,12 @@ class ProfileDataStore {
         age: Int,
         biologicalSex: HKBiologicalSex) {
         
-            let healthKitStore = HKHealthStore()
+        let healthKitStore = DataManager().healthStore
       do {
         //1. This method throws an error if these data are not available.
         let birthdayComponents =  try healthKitStore.dateOfBirthComponents()
         let biologicalSex =       try healthKitStore.biologicalSex()
-          
+
         //2. Use Calendar to calculate age.
         let today = Date()
         let calendar = Calendar.current
@@ -94,7 +94,7 @@ class ProfileDataStore {
             }
           }
          
-        HKHealthStore().execute(sampleQuery)
+        DataManager().healthStore.execute(sampleQuery)
     }
         
     class func getAverageBloodGlucose(completion: @escaping (HKQuantity?, Error?) -> Swift.Void) {
@@ -119,7 +119,7 @@ class ProfileDataStore {
             }
           }
          
-        HKHealthStore().execute(query)
+        DataManager().healthStore.execute(query)
     }
     
     
@@ -153,22 +153,13 @@ class ProfileDataStore {
             }
           }
          
-        HKHealthStore().execute(query)
+        DataManager().healthStore.execute(query)
     }
     
-    
     class func getAverageIOB(completion: @escaping (HKQuantity?, Error?) -> Swift.Void) {
-        let healthKitStore = HKHealthStore()
-        // Same as in Loop so that results can be compared easily
-        let insulinModel = ExponentialInsulinModel(actionDuration: 360*60, peakActivityTime: 75*60)
-        let basalProfile = BasalRateSchedule(dailyItems: [RepeatingScheduleValue(startTime: TimeInterval(), value: 0.8)])
-        let ISFProfile = InsulinSensitivitySchedule(unit: .millimolesPerLiter, dailyItems: [RepeatingScheduleValue(startTime: TimeInterval(), value: 3.9)])
-        let persistenceController = PersistenceController.controllerInLocalDirectory()
-        
-        // Get average IOB from the last hour
-        let doseStore = DoseStore(healthStore: healthKitStore, cacheStore: persistenceController, insulinModel: insulinModel, basalProfile: basalProfile, insulinSensitivitySchedule: ISFProfile)
-        
-        doseStore.insulinOnBoard(at: Date(), completion: { result in
+                
+        let dataManager = DataManager()
+        dataManager.doseStore.getInsulinOnBoardValues(start: Date(), completion: { result in
             print("RESULT")
             print(result)
         })
@@ -192,7 +183,7 @@ class ProfileDataStore {
               completion(averageValue, nil)
             }
           }
-        HKHealthStore().execute(query)
+        dataManager.healthStore.execute(query)
     }
     
 }
