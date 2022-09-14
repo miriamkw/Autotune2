@@ -38,7 +38,7 @@ import UIKit
 class ProfileDataStore {
     
 
-    
+    var timeDelta: TimeDelta?
     
     
     
@@ -123,67 +123,103 @@ class ProfileDataStore {
     }
     
     
-    class func getAverageBloodGlucose2(completion: @escaping (HKQuantity?, Error?) -> Swift.Void) {
-        // TODO: This method should take a list of start and enddates and return average glucose levels from this query
-        
-        
+    
+    
+    
+    
+    class func getSamples(for sampleType: HKSampleType, start: Date, completion: @escaping ([HKQuantitySample]?, Error?) -> Swift.Void) {
+          
         //1. Use HKQuery to get samples from the last hour
-        let predicate = HKQuery.predicateForSamples(withStart: Date(timeIntervalSinceNow: -60*60),
+        let predicate = HKQuery.predicateForSamples(withStart: start,
                                                           end: Date(),
                                                           options: .strictEndDate)
-        
-        let predicate2 = HKQuery.predicateForSamples(withStart: Date(timeIntervalSinceNow: -60*60*60),
-                                                          end: Date(timeIntervalSinceNow: -60*60),
-                                                          options: .strictEndDate)
 
-        let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicate2])
+        // Sort by the oldest first
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
+                                              ascending: true)
         
-        // Create the query descriptor.
-        let bloodGlucoseType = HKQuantityType(.bloodGlucose)
-        let query = HKStatisticsQuery(quantityType: bloodGlucoseType, quantitySamplePredicate: predicate, options: .discreteAverage) { query, results, error in
+        let limit = 1000 // Upper limit of 1000 samples (like 3 days)
+        
+        let sampleQuery = HKSampleQuery(sampleType: sampleType,
+                                        predicate: predicate,
+                                        limit: limit,
+                                        sortDescriptors: [sortDescriptor]) { (query, samples, error) in
             //2. Always dispatch to the main thread when complete.
             DispatchQueue.main.async {
-                guard let results = results,
-                      let averageValue = results.averageQuantity() else {
-                        
+                guard let samples = samples as? [HKQuantitySample] else {
                     completion(nil, error)
                     return
-              }
-              completion(averageValue, nil)
+                }
+                completion(samples, nil)
             }
           }
          
-        DataManager().healthStore.execute(query)
+        DataManager().healthStore.execute(sampleQuery)
     }
     
-    class func getAverageIOB(completion: @escaping (HKQuantity?, Error?) -> Swift.Void) {
-                
-        let dataManager = DataManager()
-        dataManager.doseStore.getInsulinOnBoardValues(start: Date(), completion: { result in
-            print("RESULT")
-            print(result)
-        })
-        
-        //1. Use HKQuery to get samples from the last hour
-        let predicate = HKQuery.predicateForSamples(withStart: Date(timeIntervalSinceNow: -60*60),
-                                                          end: Date(),
-                                                          options: .strictEndDate)
+    
+    
+    
+    
+    
+    
 
-        // Create the query descriptor.
-        let bloodGlucoseType = HKQuantityType(.bloodGlucose)
-        let query = HKStatisticsQuery(quantityType: bloodGlucoseType, quantitySamplePredicate: predicate, options: .discreteAverage) { query, results, error in
-            //2. Always dispatch to the main thread when complete.
-            DispatchQueue.main.async {
-                guard let results = results,
-                      let averageValue = results.averageQuantity() else {
-                        
-                    completion(nil, error)
-                    return
-              }
-              completion(averageValue, nil)
+    
+    
+    
+    
+    
+    
+    
+    // JUST DO EVERYTHING HERE FIRST!
+    // YOU CAN REFACTOR LATER!
+    class func getAutotune(completion: @escaping (HKQuantity?, Error?) -> Swift.Void) {
+        
+        // Define the time period, lets start with the last hour
+        let startDate = Date(timeIntervalSinceNow: -60*60)
+        
+        guard let glucoseLevelSampleType = HKSampleType.quantityType(forIdentifier: .bloodGlucose) else {
+          print("Glucose Level Sample Type is no longer available in HealthKit")
+          return
+        }
+        
+        // Get all the relevant insulin and glucose values
+        getSamples(for: glucoseLevelSampleType, start: startDate) { samples, error in
+            //print(samples)
+            
+            // TODO: Write guard let before you do the calculations,
+            // instead of force unwrapping
+            
+            print("NUMBER OF SAMPLES")
+            
+            for i in 1...samples!.endIndex {
+                print("SAMPLE BY INDEX")
+                print(samples![i-1].quantity.doubleValue(for: .millimolesPerLiter))
+                
+                // 
+                //self.timeDelta = TimeDelta()
             }
-          }
-        dataManager.healthStore.execute(query)
+            
+            // step 1: get the difference between all the glucose values
+            // Cast the sampels to bloodglucose type
+            // Store the values in a list in this class
+            // create a method that takes sampes and returns the collection of delta objects containing delta objects
+            
+            
+            // LoopKit:
+            // GlucoseSampleValue or GlucoseValue
+        }
+        
+        // Create a model for delta glucose (or extend from LoopKit), where you store the absorbed insulin and all the results
+        
+        // Store all Delta Glucose objects into an array.
+        
+        // Create a model for the collection of delta glucose (or extend from LoopKit)
+        // In this model you can calculate for example getPercentageFromSettings
+        
+        // Be aware of possible memory leaks if you calculate over big time spans,
+        // for later you should implement core data or realm.
     }
+    
     
 }

@@ -29,10 +29,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadAndDisplayAgeAndSex()
-        loadAndDisplayBloodGlucose()
-        print("Current IOB:")
-        let insulinStore = InsulinDeliveryStore.init(healthStore: healthStore, cacheStore: persistance)
+        //loadAndDisplayAgeAndSex()
+        //loadAndDisplayBloodGlucose()
+        loadAutotune()
 
         do {
             let test = try healthStore.activityMoveMode()
@@ -51,6 +50,68 @@ class ViewController: UIViewController {
         } catch let error {
           print("Error loading user profile details \(error)")
         }
+    }
+    
+    private func loadAutotune() {
+        // Create a new TimeDelta collection
+        var timeDeltaCollection: [TimeDelta] = []
+        
+        // Add glucose values with delta glucose and start and enddate (use the already made getSamples)
+        guard let glucoseLevelSampleType = HKSampleType.quantityType(forIdentifier: .bloodGlucose) else {
+          print("Glucose Level Sample Type is no longer available in HealthKit")
+          return
+        }
+        let startDate = Date(timeIntervalSinceNow: -10*60)
+        // TODO: Correct the time zones in date
+        ProfileDataStore.getSamples(for: glucoseLevelSampleType, start: startDate) { samples, error in
+            guard let samples = samples else {
+                if let error = error {
+                    print("Error loading glucose samples, \(error)")
+                }
+                return
+            }
+            print("NUMBER OF SAMPLES")
+            
+            for i in 1...samples.endIndex-1 {
+                print("SAMPLE BY INDEX")
+                print(samples[i-1].quantity.doubleValue(for: .millimolesPerLiter))
+                
+                let timeDelta = TimeDelta(startDate: samples[i-1].startDate, endDate: samples[i].startDate, glucoseValue: samples[i].quantity.doubleValue(for: .millimolesPerLiter), deltaGlucose: samples[i].quantity.doubleValue(for: .millimolesPerLiter)-samples[i-1].quantity.doubleValue(for: .millimolesPerLiter))
+                timeDeltaCollection.append(timeDelta)
+            }
+            self.userHealthProfile.timeDeltaList = timeDeltaCollection
+            //print("THE WHOLE LIST!!")
+            //print(timeDeltaCollection)
+        }
+        
+        // Add insulin values with absorbed insulin
+        guard let insulinSampleType = HKSampleType.quantityType(forIdentifier: .insulinDelivery) else {
+          print("Insulin Dose Sample Type is no longer available in HealthKit")
+          return
+        }
+        // The last hour and the insulin duration time and delay before
+        let timeInterval: Double = -60*60-370*60
+        let startDateInsulin = Date(timeIntervalSinceNow: timeInterval)
+        ProfileDataStore.getSamples(for: insulinSampleType, start: startDateInsulin) { samples, error in
+            guard let samples = samples else {
+                if let error = error {
+                    print("Error loading insulin samples, \(error)")
+                }
+                return
+            }
+            //print(samples)
+            // TODO: create methods in TimeDelta that set IOB and Absorbed insulin
+            var iterator = self.userHealthProfile.timeDeltaList?.makeIterator()
+            while let timeDelta = iterator?.next() {
+                timeDelta.setIOB(samples: samples)
+            }
+        }
+        
+        // calculate autotune assuming carbs is always 0
+        
+        
+        // Fill the UserHealthProfile with the TimeDelta collection
+        // Create methods that can calculate the average insulin demand for the collection
     }
     
     private func loadAndDisplayBloodGlucose() {
@@ -92,27 +153,13 @@ class ViewController: UIViewController {
             
             // TODO: use workouts to find ISF and basal rates during workouts
              */
+            
+            //ProfileDataStore.getAutotune { (sample, error) in
+                // TODO
+            //}
         }
         
         ProfileDataStore.getAverageBloodGlucose() { (sample, error) in
-              
-          guard let sample = sample else {
-              
-            if let error = error {
-                print("Error loading user profile details \(error)")
-            }
-            return
-          }
-              
-          //2. Convert the height sample to meters, save to the profile model,
-          //   and update the user interface.
-            let mmolLUnit = HKUnit.moleUnit(with: .milli, molarMass: HKUnitMolarMassBloodGlucose).unitDivided(by: HKUnit.liter())
-            let averageBloodGlucose = sample.doubleValue(for: mmolLUnit)
-          self.userHealthProfile.averageBloodGlucose = averageBloodGlucose
-          self.updateLabels()
-        }
-        
-        ProfileDataStore.getAverageIOB { (sample, error) in
               
           guard let sample = sample else {
               

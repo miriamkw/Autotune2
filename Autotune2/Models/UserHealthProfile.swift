@@ -32,23 +32,31 @@ import HealthKit
 
 class UserHealthProfile {
   
-  var age: Int?
-  var biologicalSex: HKBiologicalSex?
-  var bloodType: HKBloodType?
+    // TEMPORARY SOLUTION HARD CODED VALUES FOR BASELINE VALUES
+    var basalRate: Double = 0.8
+    var carbRatio: Double = 10.5
+    var ISF: Double = 3.9
+    
+    var timeDeltaList: [TimeDelta]?
+    
+    var age: Int?
+    var biologicalSex: HKBiologicalSex?
+    var bloodType: HKBloodType?
     var bloodGlucose: Double?
     var averageBloodGlucose: Double?
-  var heightInMeters: Double?
-  var weightInKilograms: Double?
+    var heightInMeters: Double?
+    var weightInKilograms: Double?
   
     // Computed property that will return nil if not weight or height is stored in this class
-  var bodyMassIndex: Double? {
+    var bodyMassIndex: Double? {
     
-    guard let weightInKilograms = weightInKilograms,
-      let heightInMeters = heightInMeters,
-      heightInMeters > 0 else {
-        return nil
+        guard let weightInKilograms = weightInKilograms,
+          let heightInMeters = heightInMeters,
+          heightInMeters > 0 else {
+            return nil
+        }
+        return (weightInKilograms/(heightInMeters*heightInMeters))
     }
     
-    return (weightInKilograms/(heightInMeters*heightInMeters))
-  }
+    
 }

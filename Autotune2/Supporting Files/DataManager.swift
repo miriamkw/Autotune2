@@ -17,6 +17,8 @@ final class DataManager {
     
     let ISFProfile: InsulinSensitivitySchedule
     
+    let carbRatio: CarbRatioSchedule
+    
     // MARK: Stores
     let healthStore: HKHealthStore
     
@@ -33,7 +35,10 @@ final class DataManager {
         self.cacheStore = PersistenceController.controllerInLocalDirectory()
         self.insulinModel = ExponentialInsulinModel(actionDuration: 360*60, peakActivityTime: 75*60)
         self.basalProfile = BasalRateSchedule(dailyItems: [RepeatingScheduleValue(startTime: TimeInterval(), value: 0.8)])!
+        self.carbRatio = CarbRatioSchedule(unit: .gram(), dailyItems: [RepeatingScheduleValue(startTime: TimeInterval(), value: 10.5)])!
         self.ISFProfile = InsulinSensitivitySchedule(unit: .millimolesPerLiter, dailyItems: [RepeatingScheduleValue(startTime: TimeInterval(), value: 3.9)])!
+        
+        //LoopKit.CarbAbsorptionModel.nonlinear (there are three, discover in loop which is default etc)
         
         self.doseStore = DoseStore(healthStore: healthStore, cacheStore: cacheStore, insulinModel: insulinModel, basalProfile: basalProfile, insulinSensitivitySchedule: ISFProfile)
        

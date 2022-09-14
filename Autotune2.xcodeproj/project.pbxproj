@@ -13,6 +13,7 @@
 		E71B670428CF2E9900AD09CE /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670328CF2E9900AD09CE /* Bundle.swift */; };
 		E71B670628CF30C400AD09CE /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670528CF30C400AD09CE /* HKUnit.swift */; };
 		E71B670828CF5E8500AD09CE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670728CF5E8500AD09CE /* DataManager.swift */; };
+		E71B670A28D10B7100AD09CE /* TimeDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670928D10B7100AD09CE /* TimeDelta.swift */; };
 		E790ED5728C73BA40008C31B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5628C73BA40008C31B /* AppDelegate.swift */; };
 		E790ED5928C73BA40008C31B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5828C73BA40008C31B /* SceneDelegate.swift */; };
 		E790ED5B28C73BA40008C31B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5A28C73BA40008C31B /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		E71B670328CF2E9900AD09CE /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		E71B670528CF30C400AD09CE /* HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
 		E71B670728CF5E8500AD09CE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E71B670928D10B7100AD09CE /* TimeDelta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDelta.swift; sourceTree = "<group>"; };
 		E790ED5328C73BA40008C31B /* Autotune2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Autotune2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E790ED5628C73BA40008C31B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E790ED5828C73BA40008C31B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				E790ED7728C7541F0008C31B /* UserHealthProfile.swift */,
 				E7F377BC28C7933D009FE8BE /* Workout.swift */,
+				E71B670928D10B7100AD09CE /* TimeDelta.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E790ED5B28C73BA40008C31B /* ViewController.swift in Sources */,
+				E71B670A28D10B7100AD09CE /* TimeDelta.swift in Sources */,
 				E790ED7628C750200008C31B /* ProfileDataStore.swift in Sources */,
 				E71B670628CF30C400AD09CE /* HKUnit.swift in Sources */,
 				E790ED7828C7541F0008C31B /* UserHealthProfile.swift in Sources */,
