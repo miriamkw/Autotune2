@@ -99,11 +99,16 @@ class ViewController: UIViewController {
                 }
                 return
             }
-            //print(samples)
             // TODO: create methods in TimeDelta that set IOB and Absorbed insulin
             var iterator = self.userHealthProfile.timeDeltaList?.makeIterator()
             while let timeDelta = iterator?.next() {
                 timeDelta.setIOB(samples: samples)
+                timeDelta.setAbsorbedInsulin(samples: samples)
+                timeDelta.setInjectedInsulin(samples: samples)
+                print("BASELINE")
+                print(timeDelta.getBaselineInsulin(basal: 0.8, carb_ratio: 10))
+                print("DELTA GLUCOSE")
+                print(timeDelta.deltaGlucose)
             }
         }
         
