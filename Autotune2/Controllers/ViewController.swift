@@ -85,12 +85,39 @@ class ViewController: UIViewController {
         }
         
         // Add insulin values with absorbed insulin
+        guard let carbohydrateSampleType = HKSampleType.quantityType(forIdentifier: .dietaryCarbohydrates) else {
+          print("Carbohydrate Intake Sample Type is no longer available in HealthKit")
+          return
+        }
+        // The last hour and the carbohydrate duration time and delay before with some margin
+        let timeInterval: Double = -60*60-370*60
+        let startDateCarbs = Date(timeIntervalSinceNow: timeInterval)
+        ProfileDataStore.getSamples(for: carbohydrateSampleType, start: startDateCarbs) { samples, error in
+            guard let samples = samples else {
+                if let error = error {
+                    print("Error loading carbohydrate samples, \(error)")
+                }
+                return
+            }
+            var iterator = self.userHealthProfile.timeDeltaList?.makeIterator()
+            while let timeDelta = iterator?.next() {
+                print("COB")
+                timeDelta.setCOB(samples: samples)
+                print(timeDelta.COB)
+                print("Absorbed carbs")
+                timeDelta.setAbsorbedCarbohydrates(samples: samples)
+                print(timeDelta.absorbedCarbohydrates)
+            }
+            
+        }
+        
+        // Add insulin values with absorbed insulin
         guard let insulinSampleType = HKSampleType.quantityType(forIdentifier: .insulinDelivery) else {
           print("Insulin Dose Sample Type is no longer available in HealthKit")
           return
         }
         // The last hour and the insulin duration time and delay before
-        let timeInterval: Double = -60*60-370*60
+        //let timeInterval: Double = -60*60-370*60
         let startDateInsulin = Date(timeIntervalSinceNow: timeInterval)
         ProfileDataStore.getSamples(for: insulinSampleType, start: startDateInsulin) { samples, error in
             guard let samples = samples else {
@@ -106,9 +133,10 @@ class ViewController: UIViewController {
                 timeDelta.setAbsorbedInsulin(samples: samples)
                 timeDelta.setInjectedInsulin(samples: samples)
                 print("BASELINE")
-                print(timeDelta.getBaselineInsulin(basal: 0.8, carb_ratio: 10))
+                print(timeDelta.getBaselineInsulin(basal: 0.8, ISF: 3.9, carb_ratio: 10))
                 print("DELTA GLUCOSE")
                 print(timeDelta.deltaGlucose)
+                print(timeDelta.getExpectedDeltaGlucose(basal: 0.8, ISF: 3.9, carb_ratio: 10))
             }
         }
         
