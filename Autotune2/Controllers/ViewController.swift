@@ -5,6 +5,15 @@
 //  Created by Miriam Kopperstad Wolff on 06/09/2022.
 //
 
+
+
+
+// TODO: Next
+// Remove all unneccesary code
+// Add interface
+// Refactor to MVC pattern
+// Do further advancements of the backend and integrate to interface
+
 import UIKit
 import HealthKit
 import LoopKit
