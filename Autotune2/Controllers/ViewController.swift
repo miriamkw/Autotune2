@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func loadAutotune() {
+    private func loadAutotune() {/*
         // Create a new TimeDelta collection
         var timeDeltaCollection: [TimeDelta] = []
         
@@ -154,6 +154,7 @@ class ViewController: UIViewController {
         
         // Fill the UserHealthProfile with the TimeDelta collection
         // Create methods that can calculate the average insulin demand for the collection
+                                  */
     }
     
     private func loadAndDisplayBloodGlucose() {

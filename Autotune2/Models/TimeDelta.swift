@@ -21,24 +21,20 @@ class TimeDelta {
     var COB: Double?
     var absorbedCarbohydrates: Double?
     var consumedCarbohydrates: Double?
+
+    var baselineInsulin: Double?
     
-    let insulinModel = ExponentialInsulinModel(actionDuration: 21600.0, peakActivityTime: 4500.0)
-    let carbMath = CarbMath()
+    let insulinModel: ExponentialInsulinModel
+    let carbMath: CarbMath
     
-    init(startDate: Date, endDate: Date, glucoseValue: Double, deltaGlucose: Double) {
+    init(startDate: Date, endDate: Date, glucoseValue: Double, deltaGlucose: Double, insulinModel: ExponentialInsulinModel, carbMath: CarbMath) {
         self.startDate = startDate
         self.endDate = endDate
         self.glucoseValue = glucoseValue
         self.deltaGlucose = deltaGlucose
-    }
-    
-    var baselineInsulin: Double? { // percentage of baseline insulin demands
-        guard let absorbedInsulin = absorbedInsulin else {
-            return nil
-        }
-        // TODO: Calculate baseline insulin compared to settings!
-        // TODO: Add carbohydrates
-        return (deltaGlucose + absorbedInsulin)
+        
+        self.insulinModel = insulinModel
+        self.carbMath = carbMath
     }
     
     var deltaTime: TimeInterval {
@@ -49,7 +45,6 @@ class TimeDelta {
         // Return in minutes
         return startDate.distance(to: endDate).rawValue/60
     }
-    
     
     // IOB at the endDate of this object, which is the date of the glucose dose sample
     func setIOB(samples: [HKQuantitySample]) {
@@ -85,8 +80,8 @@ class TimeDelta {
             }
         }
         self.IOB = res
-        print("IOB")
-        print(res)
+        //print("IOB")
+        //print(res)
     }
     
     func setAbsorbedInsulin(samples: [HKQuantitySample]) {
@@ -117,8 +112,8 @@ class TimeDelta {
             }
         }
         self.absorbedInsulin = res
-        print("ABSORBED INSULIN")
-        print(res)
+        //print("ABSORBED INSULIN")
+        //print(res)
     }
     
     func setCOB(samples: [HKQuantitySample]) {
@@ -155,6 +150,8 @@ class TimeDelta {
             res = res + carbQuantity * (startEffectRemaining - endEffectRemaining)
         }
         self.absorbedCarbohydrates = res
+        //print("IT HAPPENS COME UN")
+        //print(res)
     }
     
     func setInjectedInsulin(samples: [HKQuantitySample]) {
@@ -181,37 +178,38 @@ class TimeDelta {
             }
         }
         self.injectedInsulin = res
-        print("INJECTED INSULIN")
-        print(res)
-        print("DATE")
-        print(self.endDate)
+        //print("INJECTED INSULIN")
+        //print(res)
+        //print("DATE")
+        //print(self.endDate)
     }
     
     // TODO: error metrics, or score, do research on that
     // TODO: Add other features that might impact future levels, like rate of glucose change the last 15 minutes, or rate of carb absorption
     
-    
-    // TODO: Add carbohydrates in the calculation
-    // This is definitely wrong, because the expected does not become the actual delta glucose
-    func getBaselineInsulin(basal: Double, ISF: Double, carb_ratio: Double) -> Double? {
-        guard let absorbedInsulin = absorbedInsulin, let absorbedCarbohydrates = absorbedCarbohydrates else {
-            return nil
-        }
-        let min_error = ((absorbedCarbohydrates)/(carb_ratio) - absorbedInsulin)/(deltaGlucose/ISF - basal/(60/deltaTimeRaw))
-        return max(0, min_error)
+    // Calculates the percentage of basal and ISF needed to minimize the error between actual and expected delta glucose
+    // Can not be lower than 0 percent
+    func calculateBaselineInsulin(basal: Float, ISF: Float, carb_ratio: Float) {
+        //print("TEST")
+        //print(absorbedCarbohydrates)
+        //print("TEST2")
+        //print(absorbedInsulin)
+        
+        if let absorbedInsulin = absorbedInsulin, let absorbedCarbohydrates = absorbedCarbohydrates {
+            let min_error = ((absorbedCarbohydrates)/(Double(carb_ratio)) - absorbedInsulin)/(deltaGlucose/Double(ISF) - Double(basal)/(60/deltaTimeRaw))
+            baselineInsulin = max(0, min_error)
+        } else {
+            print("Absorbed insulin and/or absorbed carbohydrates not available")
+        }        
     }
     
-    // TODO: Implement this to check that the baseline insulin calculation actually works
+    // To check that the baseline insulin calculation actually works
+    /*
     func getExpectedDeltaGlucose(basal: Double, ISF: Double, carb_ratio: Double) -> Double? {
         guard let absorbedInsulin = absorbedInsulin, let absorbedCarbohydrates = absorbedCarbohydrates else {
             return nil
         }
         return ((absorbedCarbohydrates/carb_ratio) + basal/(60/deltaTimeRaw) - absorbedInsulin)*ISF
     }
-    
-    // read about setters and getters
-    // The get and set values should have the settings as input
-    
-    // func getAbsorbedInsulin(insulinDoses: [InsulinDose]) {
-    
+    */
 }

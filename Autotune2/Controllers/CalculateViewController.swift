@@ -46,26 +46,28 @@ class CalculateViewController: UIViewController {
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        let timeSpan = round(timeSpanSlider.value)
-        let basalRate = round(basalRateSlider.value * 20)/20
-        let insulinSensitivity = round(insulinSensitivitySlider.value * 10)/10
-        let carbohydrateRatio = round(carbohydrateRatioSlider.value * 10)/10
         
-        print(timeSpan)
-        print(basalRate)
-        print(insulinSensitivity)
-        print(carbohydrateRatio)
+        //DispatchQueue.main.async {
+            let timeSpan = round(self.timeSpanSlider.value)
+            let basalRate = round(self.basalRateSlider.value * 20)/20
+            let insulinSensitivity = round(self.insulinSensitivitySlider.value * 10)/10
+            let carbohydrateRatio = round(self.carbohydrateRatioSlider.value * 10)/10
+            // TODO: This function should probably be a closure function
+            // Maybe you should fetch the calculated value immediately and perform segue after
+            // Make this function RETURN the value you need! Set the value in the calculatorbrain for example
         
-        calculatorBrain.calculatePercentageInsulinDemand(timeSpan: timeSpan, basalRate: basalRate, insulinSensitivity: insulinSensitivity, carbohydrateRatio: carbohydrateRatio)
-        self.performSegue(withIdentifier: "goToResults", sender: self)
+        
+        // TODO: Add error handling on the completion
+        self.calculatorBrain.calculateInsulinDemand(timeSpan: timeSpan, basalRate: basalRate, insulinSensitivity: insulinSensitivity, carbohydrateRatio: carbohydrateRatio) {
+            self.performSegue(withIdentifier: "goToResults", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToResults" {
             let destinationVC = segue.destination as! ResultViewController
-            destinationVC.percentageInsulinDemandValue = calculatorBrain.getPercentageInsulinDemand() // "100 %"
-            destinationVC.advice = "Your settings are perfect!"
-            //destinationVC.color = calculatorBrain.getColor()
+            destinationVC.percentageInsulinDemandValue = calculatorBrain.getInsulinDemandValue() // "100 %"
+            destinationVC.advice = calculatorBrain.getAdvice()
         }
     }
 }

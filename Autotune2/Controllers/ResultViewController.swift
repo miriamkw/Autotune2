@@ -11,7 +11,6 @@ class ResultViewController: UIViewController {
     
     var percentageInsulinDemandValue: String?
     var advice: String?
-    var color: UIColor?
     
     @IBOutlet weak var insulinDemandLabel: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
@@ -21,7 +20,6 @@ class ResultViewController: UIViewController {
         
         insulinDemandLabel.text = percentageInsulinDemandValue
         adviceLabel.text = advice
-        //view.backgroundColor = color
     }
     
     @IBAction func recalculatePressed(_ sender: UIButton) {

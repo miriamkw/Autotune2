@@ -128,7 +128,7 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Calculate"/>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="NKv-x4-I6S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
@@ -309,13 +309,13 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="9IN-47-v1S"/>
+                        <viewLayoutGuide key="safeArea" id="ae3-OP-wZx"/>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OnE-o8-X6Z" secondAttribute="trailing" id="0fg-Bn-28b"/>
-                            <constraint firstItem="XBs-Me-1hf" firstAttribute="top" secondItem="9IN-47-v1S" secondAttribute="top" id="8VX-xW-xZd"/>
-                            <constraint firstItem="OnE-o8-X6Z" firstAttribute="leading" secondItem="oQK-Ff-o9M" secondAttribute="leading" id="N8c-R1-nIJ"/>
-                            <constraint firstItem="9IN-47-v1S" firstAttribute="bottom" secondItem="XBs-Me-1hf" secondAttribute="bottom" id="TZl-uu-cH2"/>
+                            <constraint firstItem="ae3-OP-wZx" firstAttribute="trailing" secondItem="OnE-o8-X6Z" secondAttribute="trailing" id="0fg-Bn-28b"/>
+                            <constraint firstItem="XBs-Me-1hf" firstAttribute="top" secondItem="ae3-OP-wZx" secondAttribute="top" id="8VX-xW-xZd"/>
+                            <constraint firstItem="OnE-o8-X6Z" firstAttribute="leading" secondItem="ae3-OP-wZx" secondAttribute="leading" id="N8c-R1-nIJ"/>
+                            <constraint firstItem="ae3-OP-wZx" firstAttribute="bottom" secondItem="XBs-Me-1hf" secondAttribute="bottom" id="TZl-uu-cH2"/>
                             <constraint firstItem="XBs-Me-1hf" firstAttribute="leading" secondItem="oQK-Ff-o9M" secondAttribute="leadingMargin" id="aXC-us-pFm"/>
                             <constraint firstAttribute="bottom" secondItem="OnE-o8-X6Z" secondAttribute="bottom" id="b7p-Ir-KUH"/>
                             <constraint firstItem="OnE-o8-X6Z" firstAttribute="top" secondItem="oQK-Ff-o9M" secondAttribute="top" id="qAg-O7-vW8"/>
@@ -393,18 +393,18 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="VWk-Cf-Jy8"/>
-                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                        <viewLayoutGuide key="safeArea" id="1fz-gn-jNh"/>
+                        <color key="backgroundColor" red="0.38466995949999999" green="0.37865132089999998" blue="0.59858524800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="YPw-xd-D1T" firstAttribute="top" secondItem="o0g-Fy-VUI" secondAttribute="top" id="9eB-gm-ltp"/>
                             <constraint firstItem="DNR-Ac-ddt" firstAttribute="centerY" secondItem="o0g-Fy-VUI" secondAttribute="centerY" id="ERv-S3-CII"/>
                             <constraint firstItem="R1r-yZ-3EG" firstAttribute="trailing" secondItem="o0g-Fy-VUI" secondAttribute="trailingMargin" id="Str-Fa-oSU"/>
                             <constraint firstItem="R1r-yZ-3EG" firstAttribute="leading" secondItem="o0g-Fy-VUI" secondAttribute="leadingMargin" id="XyV-Th-lqe"/>
-                            <constraint firstItem="R1r-yZ-3EG" firstAttribute="bottom" secondItem="VWk-Cf-Jy8" secondAttribute="bottom" id="a4h-YO-qWM"/>
-                            <constraint firstItem="DNR-Ac-ddt" firstAttribute="centerX" secondItem="o0g-Fy-VUI" secondAttribute="centerX" id="eDN-Ab-KDy"/>
+                            <constraint firstItem="R1r-yZ-3EG" firstAttribute="bottom" secondItem="1fz-gn-jNh" secondAttribute="bottom" id="a4h-YO-qWM"/>
+                            <constraint firstItem="DNR-Ac-ddt" firstAttribute="centerX" secondItem="1fz-gn-jNh" secondAttribute="centerX" id="eDN-Ab-KDy"/>
                             <constraint firstAttribute="bottom" secondItem="YPw-xd-D1T" secondAttribute="bottom" id="gtM-3D-nI7"/>
-                            <constraint firstAttribute="trailing" secondItem="YPw-xd-D1T" secondAttribute="trailing" id="jC8-HH-zIc"/>
-                            <constraint firstItem="YPw-xd-D1T" firstAttribute="leading" secondItem="o0g-Fy-VUI" secondAttribute="leading" id="xVH-R0-hkE"/>
+                            <constraint firstItem="1fz-gn-jNh" firstAttribute="trailing" secondItem="YPw-xd-D1T" secondAttribute="trailing" id="jC8-HH-zIc"/>
+                            <constraint firstItem="YPw-xd-D1T" firstAttribute="leading" secondItem="1fz-gn-jNh" secondAttribute="leading" id="xVH-R0-hkE"/>
                         </constraints>
                     </view>
                     <connections>
@@ -422,9 +422,6 @@
         <image name="result_background" width="375" height="812"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

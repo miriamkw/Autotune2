@@ -42,6 +42,4 @@ struct CarbMath {
         return 1 - percentAbsorptionAtPercentTime(time/actionDuration)
     }
     
-    
-    
 }
