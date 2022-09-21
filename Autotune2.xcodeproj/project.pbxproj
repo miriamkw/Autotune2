@@ -12,28 +12,20 @@
 		E71B670128CF2E5700AD09CE /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670028CF2E5700AD09CE /* PersistenceController.swift */; };
 		E71B670428CF2E9900AD09CE /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670328CF2E9900AD09CE /* Bundle.swift */; };
 		E71B670628CF30C400AD09CE /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670528CF30C400AD09CE /* HKUnit.swift */; };
-		E71B670828CF5E8500AD09CE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670728CF5E8500AD09CE /* DataManager.swift */; };
 		E71B670A28D10B7100AD09CE /* TimeDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B670928D10B7100AD09CE /* TimeDelta.swift */; };
 		E71F987128D9E39E00914DDB /* CalculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71F987028D9E39E00914DDB /* CalculateViewController.swift */; };
 		E71F987328D9EA9900914DDB /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71F987228D9EA9900914DDB /* ResultViewController.swift */; };
 		E7833E6728D9F06100277647 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7833E6628D9F06100277647 /* CalculatorBrain.swift */; };
 		E7833E6A28D9F96E00277647 /* HealthKitDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7833E6928D9F96E00277647 /* HealthKitDataStore.swift */; };
-		E7833E6C28D9FFBF00277647 /* TimeDeltaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7833E6B28D9FFBF00277647 /* TimeDeltaCollection.swift */; };
 		E790ED5728C73BA40008C31B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5628C73BA40008C31B /* AppDelegate.swift */; };
 		E790ED5928C73BA40008C31B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5828C73BA40008C31B /* SceneDelegate.swift */; };
-		E790ED5B28C73BA40008C31B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED5A28C73BA40008C31B /* ViewController.swift */; };
 		E790ED5E28C73BA40008C31B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E790ED5C28C73BA40008C31B /* Main.storyboard */; };
 		E790ED6028C73BA50008C31B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E790ED5F28C73BA50008C31B /* Assets.xcassets */; };
 		E790ED6328C73BA50008C31B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E790ED6128C73BA50008C31B /* LaunchScreen.storyboard */; };
 		E790ED7228C74ABB0008C31B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E790ED7128C74ABB0008C31B /* HealthKit.framework */; };
 		E790ED7428C74BA20008C31B /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED7328C74BA20008C31B /* HealthKitSetupAssistant.swift */; };
-		E790ED7628C750200008C31B /* ProfileDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED7528C750200008C31B /* ProfileDataStore.swift */; };
-		E790ED7828C7541F0008C31B /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E790ED7728C7541F0008C31B /* UserHealthProfile.swift */; };
 		E7A1D57B28DB2EFE005C4050 /* InsulinDemand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1D57A28DB2EFE005C4050 /* InsulinDemand.swift */; };
 		E7D5B02128D745FD003EBC4F /* CarbMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D5B02028D745FD003EBC4F /* CarbMath.swift */; };
-		E7F377B728C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F377B628C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift */; };
-		E7F377B928C788C9009FE8BE /* WorkoutDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F377B828C788C9009FE8BE /* WorkoutDataStore.swift */; };
-		E7F377BD28C7933D009FE8BE /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F377BC28C7933D009FE8BE /* Workout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,17 +47,14 @@
 		E71B670028CF2E5700AD09CE /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		E71B670328CF2E9900AD09CE /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		E71B670528CF30C400AD09CE /* HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
-		E71B670728CF5E8500AD09CE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E71B670928D10B7100AD09CE /* TimeDelta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDelta.swift; sourceTree = "<group>"; };
 		E71F987028D9E39E00914DDB /* CalculateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateViewController.swift; sourceTree = "<group>"; };
 		E71F987228D9EA9900914DDB /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		E7833E6628D9F06100277647 /* CalculatorBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 		E7833E6928D9F96E00277647 /* HealthKitDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataStore.swift; sourceTree = "<group>"; };
-		E7833E6B28D9FFBF00277647 /* TimeDeltaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDeltaCollection.swift; sourceTree = "<group>"; };
 		E790ED5328C73BA40008C31B /* Autotune2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Autotune2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E790ED5628C73BA40008C31B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E790ED5828C73BA40008C31B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E790ED5A28C73BA40008C31B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E790ED5D28C73BA40008C31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E790ED5F28C73BA50008C31B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E790ED6228C73BA50008C31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,13 +62,8 @@
 		E790ED6F28C74ABB0008C31B /* Autotune2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Autotune2.entitlements; sourceTree = "<group>"; };
 		E790ED7128C74ABB0008C31B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E790ED7328C74BA20008C31B /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
-		E790ED7528C750200008C31B /* ProfileDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataStore.swift; sourceTree = "<group>"; };
-		E790ED7728C7541F0008C31B /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
 		E7A1D57A28DB2EFE005C4050 /* InsulinDemand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinDemand.swift; sourceTree = "<group>"; };
 		E7D5B02028D745FD003EBC4F /* CarbMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbMath.swift; sourceTree = "<group>"; };
-		E7F377B628C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
-		E7F377B828C788C9009FE8BE /* WorkoutDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataStore.swift; sourceTree = "<group>"; };
-		E7F377BC28C7933D009FE8BE /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +133,6 @@
 		E790ED6A28C73CF20008C31B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E790ED5A28C73BA40008C31B /* ViewController.swift */,
 				E71F987028D9E39E00914DDB /* CalculateViewController.swift */,
 				E71F987228D9EA9900914DDB /* ResultViewController.swift */,
 			);
@@ -159,7 +142,6 @@
 		E790ED6B28C73CFE0008C31B /* HealthKit Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E7F377B628C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift */,
 				E71B670528CF30C400AD09CE /* HKUnit.swift */,
 			);
 			path = "HealthKit Extensions";
@@ -168,12 +150,9 @@
 		E790ED6C28C73D140008C31B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E790ED7728C7541F0008C31B /* UserHealthProfile.swift */,
-				E7F377BC28C7933D009FE8BE /* Workout.swift */,
-				E71B670928D10B7100AD09CE /* TimeDelta.swift */,
 				E7833E6628D9F06100277647 /* CalculatorBrain.swift */,
-				E7833E6B28D9FFBF00277647 /* TimeDeltaCollection.swift */,
 				E7A1D57A28DB2EFE005C4050 /* InsulinDemand.swift */,
+				E71B670928D10B7100AD09CE /* TimeDelta.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,9 +163,6 @@
 				E790ED6128C73BA50008C31B /* LaunchScreen.storyboard */,
 				E790ED5F28C73BA50008C31B /* Assets.xcassets */,
 				E790ED7328C74BA20008C31B /* HealthKitSetupAssistant.swift */,
-				E790ED7528C750200008C31B /* ProfileDataStore.swift */,
-				E7F377B828C788C9009FE8BE /* WorkoutDataStore.swift */,
-				E71B670728CF5E8500AD09CE /* DataManager.swift */,
 				E7D5B02028D745FD003EBC4F /* CarbMath.swift */,
 				E7833E6928D9F96E00277647 /* HealthKitDataStore.swift */,
 			);
@@ -304,26 +280,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E790ED5B28C73BA40008C31B /* ViewController.swift in Sources */,
 				E71B670A28D10B7100AD09CE /* TimeDelta.swift in Sources */,
-				E790ED7628C750200008C31B /* ProfileDataStore.swift in Sources */,
 				E71B670628CF30C400AD09CE /* HKUnit.swift in Sources */,
 				E7A1D57B28DB2EFE005C4050 /* InsulinDemand.swift in Sources */,
 				E7833E6A28D9F96E00277647 /* HealthKitDataStore.swift in Sources */,
-				E790ED7828C7541F0008C31B /* UserHealthProfile.swift in Sources */,
 				E71F987128D9E39E00914DDB /* CalculateViewController.swift in Sources */,
 				E7833E6728D9F06100277647 /* CalculatorBrain.swift in Sources */,
-				E7F377B928C788C9009FE8BE /* WorkoutDataStore.swift in Sources */,
-				E7F377B728C7587A009FE8BE /* HKBiologicalSex+StringRepresentation.swift in Sources */,
 				E71F987328D9EA9900914DDB /* ResultViewController.swift in Sources */,
-				E7F377BD28C7933D009FE8BE /* Workout.swift in Sources */,
 				E790ED7428C74BA20008C31B /* HealthKitSetupAssistant.swift in Sources */,
-				E7833E6C28D9FFBF00277647 /* TimeDeltaCollection.swift in Sources */,
 				E790ED5728C73BA40008C31B /* AppDelegate.swift in Sources */,
 				E71B670428CF2E9900AD09CE /* Bundle.swift in Sources */,
 				E790ED5928C73BA40008C31B /* SceneDelegate.swift in Sources */,
 				E7D5B02128D745FD003EBC4F /* CarbMath.swift in Sources */,
-				E71B670828CF5E8500AD09CE /* DataManager.swift in Sources */,
 				E71B670128CF2E5700AD09CE /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

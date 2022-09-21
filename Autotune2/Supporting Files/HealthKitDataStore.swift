@@ -9,9 +9,17 @@ import HealthKit
 import LoopKit
 import UIKit
 
-class HealthKitDataStore {
+final class HealthKitDataStore {
     
-    class func getSamples(for sampleType: HKSampleType, start: Date, end: Date = Date(), completion: @escaping ([HKQuantitySample]?, Error?) -> Swift.Void) {
+    let healthStore: HKHealthStore
+    // Create singleton instance
+    static let shared = HealthKitDataStore()
+        
+    init() {
+        self.healthStore = HKHealthStore()
+    }
+    
+    func getSamples(for sampleType: HKSampleType, start: Date, end: Date = Date(), completion: @escaping ([HKQuantitySample]?, Error?) -> Swift.Void) {
           
         //1. Use HKQuery to get samples from the last hour
         let predicate = HKQuery.predicateForSamples(withStart: start,
@@ -38,7 +46,7 @@ class HealthKitDataStore {
             }
           }
          
-        DataManager().healthStore.execute(sampleQuery)
+        self.healthStore.execute(sampleQuery)
     }
     
 }

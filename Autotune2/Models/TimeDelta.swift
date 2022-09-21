@@ -80,8 +80,6 @@ class TimeDelta {
             }
         }
         self.IOB = res
-        //print("IOB")
-        //print(res)
     }
     
     func setAbsorbedInsulin(samples: [HKQuantitySample]) {
@@ -112,8 +110,6 @@ class TimeDelta {
             }
         }
         self.absorbedInsulin = res
-        //print("ABSORBED INSULIN")
-        //print(res)
     }
     
     func setCOB(samples: [HKQuantitySample]) {
@@ -150,8 +146,6 @@ class TimeDelta {
             res = res + carbQuantity * (startEffectRemaining - endEffectRemaining)
         }
         self.absorbedCarbohydrates = res
-        //print("IT HAPPENS COME UN")
-        //print(res)
     }
     
     func setInjectedInsulin(samples: [HKQuantitySample]) {
@@ -178,23 +172,12 @@ class TimeDelta {
             }
         }
         self.injectedInsulin = res
-        //print("INJECTED INSULIN")
-        //print(res)
-        //print("DATE")
-        //print(self.endDate)
     }
     
-    // TODO: error metrics, or score, do research on that
-    // TODO: Add other features that might impact future levels, like rate of glucose change the last 15 minutes, or rate of carb absorption
     
     // Calculates the percentage of basal and ISF needed to minimize the error between actual and expected delta glucose
     // Can not be lower than 0 percent
     func calculateBaselineInsulin(basal: Float, ISF: Float, carb_ratio: Float) {
-        //print("TEST")
-        //print(absorbedCarbohydrates)
-        //print("TEST2")
-        //print(absorbedInsulin)
-        
         if let absorbedInsulin = absorbedInsulin, let absorbedCarbohydrates = absorbedCarbohydrates {
             let min_error = ((absorbedCarbohydrates)/(Double(carb_ratio)) - absorbedInsulin)/(deltaGlucose/Double(ISF) - Double(basal)/(60/deltaTimeRaw))
             baselineInsulin = max(0, min_error)
