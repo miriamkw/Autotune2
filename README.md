@@ -5,5 +5,8 @@ The app calculates the RMSE and ME for a given set of therapy settings and days.
 
 Note: The calculation takes time. I have not added a loading screen, so the user should just wait until the calculation is made.
 
+To do:
+- Check the best parameters for a given state (primarily workouts, but also high pulse, sleep, high glucose levels etc.)
+
 
 
