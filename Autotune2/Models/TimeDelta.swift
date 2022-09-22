@@ -35,6 +35,7 @@ class TimeDelta {
         
         self.insulinModel = insulinModel
         self.carbMath = carbMath
+        
     }
     
     var deltaTime: TimeInterval {
@@ -178,15 +179,17 @@ class TimeDelta {
     // Can not be lower than 0 percent
     func calculateBaselineInsulin(basal: Float, ISF: Float, carb_ratio: Float) {
         if let absorbedInsulin = absorbedInsulin, let absorbedCarbohydrates = absorbedCarbohydrates {
+            
             let upperFraction = ((absorbedCarbohydrates)/(Double(carb_ratio)) - absorbedInsulin)*Double(ISF)
             let lowerFraction = deltaGlucose - ((Double(basal)/(60/deltaTimeRaw))*Double(ISF))
             let baselinePercentage = upperFraction / lowerFraction
             
-            if baselinePercentage > 5 {
-                baselineInsulin = 5
+            if baselinePercentage > 3 {
+                baselineInsulin = 3
             } else {
                 baselineInsulin = max(0, baselinePercentage)
             }
+             
             // TODO: Insulin resistance should not be directly proportional to basal rate. That does not make any sense, and makes the results look really strange at times, which is why I added the defined constraints.
             // What happens when insulin resistance = 0? There are natural cases where basal rate should be 0, but for insulin resistance, that does not make sense, and insulin resistance should have a minimum value
         } else {
@@ -194,13 +197,12 @@ class TimeDelta {
         }        
     }
     
-    // To check that the baseline insulin calculation actually works
-    /*
     func getExpectedDeltaGlucose(basal: Double, ISF: Double, carb_ratio: Double) -> Double? {
         guard let absorbedInsulin = absorbedInsulin, let absorbedCarbohydrates = absorbedCarbohydrates else {
             return nil
         }
         return ((absorbedCarbohydrates/carb_ratio) + basal/(60/deltaTimeRaw) - absorbedInsulin)*ISF
     }
-    */
+    
 }
+

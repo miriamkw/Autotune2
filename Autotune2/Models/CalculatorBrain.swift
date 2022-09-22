@@ -16,9 +16,20 @@ class CalculatorBrain {
     let carbMath = CarbMath()
     let healthKitDataStore = HealthKitDataStore.shared
     
-    func getInsulinDemandValue() -> String {
-        let insulinDemandRounded = String(format: "%.0f%%", insulinDemand?.value ?? 0.0)
-        return insulinDemandRounded
+    func getMeanError() -> String {
+        if let ME = insulinDemand?.ME {
+            return String(format: "%.1f mmol/L/h", ME)
+        } else {
+            return "Not available"
+        }
+    }
+    
+    func getRMSE() -> String {
+        if let RMSE = insulinDemand?.RMSE {
+            return String(format: "%.1f mmol/L/h", RMSE)
+        } else {
+            return "Not available"
+        }
     }
     
     func getAdvice() -> String {
@@ -29,29 +40,29 @@ class CalculatorBrain {
     func calculateInsulinDemand(timeSpan: Float, basalRate: Float, insulinSensitivity: Float, carbohydrateRatio: Float, completion: @escaping () -> Void) {
         self.getTimeDeltaList(timeSpan: timeSpan, basalRate: basalRate, insulinSensitivity: insulinSensitivity, carbohydrateRatio: carbohydrateRatio) { timeDeltaList in
             DispatchQueue.main.async {
-                var sum = 0.0
+                var RMSE = 0.0
+                var ME = 0.0
                 var count = 0.0
                 for timeDelta in timeDeltaList {
-                    if let baselineInsulin = timeDelta.baselineInsulin {
-                        sum = sum + baselineInsulin
+                    if let expectedDeltaGluose = timeDelta.getExpectedDeltaGlucose(basal: Double(basalRate), ISF: Double(insulinSensitivity), carb_ratio: Double(carbohydrateRatio)) {
+                        let error = expectedDeltaGluose - timeDelta.deltaGlucose
+                        RMSE = RMSE + pow(error, 2)
+                        ME = ME + error
                         count = count + 1
-                        print("BASELINE")
-                        print(baselineInsulin)
                     } else {
-                        print("Baseline insulin was not available")
+                        print("Expected delta glucose was not available")
                     }
+                    
                 }
-                let averageValue = sum/count * 100
+                RMSE = sqrt(RMSE/count)*12
+                ME = ME/count*12
                 
-                print("COUNT")
-                print(count)
-                
-                if averageValue < 80 {
-                    self.insulinDemand = InsulinDemand(value: averageValue, advice: "You need less insulin than you think!")
-                } else if averageValue <= 120 {
-                    self.insulinDemand = InsulinDemand(value: averageValue, advice: "Your settings are good!")
+                if ME < -0.5 {
+                    self.insulinDemand = InsulinDemand(RMSE: RMSE, ME: ME, advice: "You need more insulin than you think!")
+                } else if ME <= 0.5 {
+                    self.insulinDemand = InsulinDemand(RMSE: RMSE, ME: ME, advice: "Your settings are good!")
                 } else {
-                    self.insulinDemand = InsulinDemand(value: averageValue, advice: "Your need more insulin than you think!")
+                    self.insulinDemand = InsulinDemand(RMSE: RMSE, ME: ME, advice: "Your need less insulin than you think!")
                 }
                 completion()
             }
@@ -61,7 +72,7 @@ class CalculatorBrain {
     // TODO: Add error closure
     private func getTimeDeltaList(timeSpan: Float, basalRate: Float, insulinSensitivity: Float, carbohydrateRatio: Float, completion: @escaping ([TimeDelta]) -> Void) {
         
-        let startDate = Date(timeIntervalSinceNow: -Double(timeSpan)*60*60)
+        let startDate = Date(timeIntervalSinceNow: -Double(timeSpan)*60*60*24)
         let carbohydrateAbsorptionTime: Double = -6*60*60
         let startDateCarbs = startDate.addingTimeInterval(TimeInterval(carbohydrateAbsorptionTime))
         let startDateInsulin = startDate.addingTimeInterval(TimeInterval(-insulinModel.actionDuration))

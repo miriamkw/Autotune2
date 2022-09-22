@@ -27,7 +27,7 @@ class CalculateViewController: UIViewController {
 
     @IBAction func timeSpanSliderChanged(_ sender: UISlider) {
         let timeSpan = String(format: "%.0f", sender.value)
-        timeSpanLabel.text = "\(timeSpan) hr"
+        timeSpanLabel.text = "\(timeSpan) days"
     }
     
     @IBAction func basalRateSliderChanged(_ sender: UISlider) {
@@ -66,7 +66,8 @@ class CalculateViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToResults" {
             let destinationVC = segue.destination as! ResultViewController
-            destinationVC.percentageInsulinDemandValue = calculatorBrain.getInsulinDemandValue() // "100 %"
+            destinationVC.ME = calculatorBrain.getMeanError()
+            destinationVC.RMSE = calculatorBrain.getRMSE()
             destinationVC.advice = calculatorBrain.getAdvice()
         }
     }

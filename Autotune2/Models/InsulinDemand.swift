@@ -6,7 +6,10 @@
 //
 
 struct InsulinDemand {
-    let value: Double
+    //let value: Double
+    // Root mean square error
+    let RMSE: Double
+    // Mean error biased on direction
+    let ME: Double
     let advice: String
-    //let error: Float
 }

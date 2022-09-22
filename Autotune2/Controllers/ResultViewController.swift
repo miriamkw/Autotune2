@@ -9,16 +9,19 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
-    var percentageInsulinDemandValue: String?
+    var ME: String?
+    var RMSE: String?
     var advice: String?
     
-    @IBOutlet weak var insulinDemandLabel: UILabel!
+    @IBOutlet weak var MELabel: UILabel!
+    @IBOutlet weak var RMSELabel: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        insulinDemandLabel.text = percentageInsulinDemandValue
+        MELabel.text = ME
+        RMSELabel.text = RMSE
         adviceLabel.text = advice
     }
     
