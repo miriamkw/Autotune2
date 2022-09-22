@@ -35,11 +35,16 @@ class CalculatorBrain {
                     if let baselineInsulin = timeDelta.baselineInsulin {
                         sum = sum + baselineInsulin
                         count = count + 1
+                        print("BASELINE")
+                        print(baselineInsulin)
                     } else {
                         print("Baseline insulin was not available")
                     }
                 }
                 let averageValue = sum/count * 100
+                
+                print("COUNT")
+                print(count)
                 
                 if averageValue < 80 {
                     self.insulinDemand = InsulinDemand(value: averageValue, advice: "You need less insulin than you think!")

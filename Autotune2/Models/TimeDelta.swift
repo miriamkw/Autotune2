@@ -174,13 +174,21 @@ class TimeDelta {
         self.injectedInsulin = res
     }
     
-    
     // Calculates the percentage of basal and ISF needed to minimize the error between actual and expected delta glucose
     // Can not be lower than 0 percent
     func calculateBaselineInsulin(basal: Float, ISF: Float, carb_ratio: Float) {
         if let absorbedInsulin = absorbedInsulin, let absorbedCarbohydrates = absorbedCarbohydrates {
-            let min_error = ((absorbedCarbohydrates)/(Double(carb_ratio)) - absorbedInsulin)/(deltaGlucose/Double(ISF) - Double(basal)/(60/deltaTimeRaw))
-            baselineInsulin = max(0, min_error)
+            let upperFraction = ((absorbedCarbohydrates)/(Double(carb_ratio)) - absorbedInsulin)*Double(ISF)
+            let lowerFraction = deltaGlucose - ((Double(basal)/(60/deltaTimeRaw))*Double(ISF))
+            let baselinePercentage = upperFraction / lowerFraction
+            
+            if baselinePercentage > 5 {
+                baselineInsulin = 5
+            } else {
+                baselineInsulin = max(0, baselinePercentage)
+            }
+            // TODO: Insulin resistance should not be directly proportional to basal rate. That does not make any sense, and makes the results look really strange at times, which is why I added the defined constraints.
+            // What happens when insulin resistance = 0? There are natural cases where basal rate should be 0, but for insulin resistance, that does not make sense, and insulin resistance should have a minimum value
         } else {
             print("Absorbed insulin and/or absorbed carbohydrates not available")
         }        

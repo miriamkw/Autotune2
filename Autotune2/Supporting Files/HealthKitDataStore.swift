@@ -11,13 +11,9 @@ import UIKit
 
 final class HealthKitDataStore {
     
-    let healthStore: HKHealthStore
+    let healthStore = HKHealthStore()
     // Create singleton instance
     static let shared = HealthKitDataStore()
-        
-    init() {
-        self.healthStore = HKHealthStore()
-    }
     
     func getSamples(for sampleType: HKSampleType, start: Date, end: Date = Date(), completion: @escaping ([HKQuantitySample]?, Error?) -> Swift.Void) {
           
@@ -30,21 +26,21 @@ final class HealthKitDataStore {
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
                                               ascending: true)
         
-        let limit = 10000 // Upper limit of 1000 samples, should be enough for one month if there are maximum 14 samples per hour
+        let limit = 10000 // Upper limit of 10000 samples, should be enough for one month if there are maximum 14 samples per hour
         
         let sampleQuery = HKSampleQuery(sampleType: sampleType,
                                         predicate: predicate,
                                         limit: limit,
                                         sortDescriptors: [sortDescriptor]) { (query, samples, error) in
-            //2. Always dispatch to the main thread when complete.
-            DispatchQueue.main.async {
+        //2. Always dispatch to the main thread when complete.
+        DispatchQueue.main.async {
                 guard let samples = samples as? [HKQuantitySample] else {
                     completion(nil, error)
                     return
                 }
                 completion(samples, nil)
             }
-          }
+        }
          
         self.healthStore.execute(sampleQuery)
     }
